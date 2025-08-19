@@ -31,6 +31,7 @@ class User extends Authenticatable
         'telefono',
         'rol',
     ];
+    //comentrio
 
     /**
      * Atributos que deben ocultarse en arrays o JSON.
