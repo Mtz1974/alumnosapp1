@@ -1,12 +1,7 @@
-{{-- resources/views/livewire/alumnos-index.blade.php --}}
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <input 
-            type="text" 
-            wire:model.live="search" 
-            placeholder="Buscar por email, dni, carrera, comisión" 
-            class="border rounded px-3 py-2 w-1/2" 
-        />
+        <input type="text" wire:model.live="search" wire:key="edit-form-{{ $editingId }}" placeholder="Buscar por email, dni, carrera, comisión"
+            class="border rounded px-3 py-2 w-1/2" />
         <div class="flex items-center gap-3">
             <select wire:model="perPage" class="border rounded px-2 py-1">
                 <option value="10">10</option>
@@ -38,14 +33,12 @@
                 @forelse ($alumnos as $a)
                     <tr class="border-t">
                         <td class="p-3">
-                            @if ($a->foto_perfil && $a->foto_url !== asset('images/default-avatar.png'))
-                                <img 
-                                    src="{{ $a->foto_url }}" 
-                                    alt="Foto de {{ $a->nombre_completo }}"
-                                    class="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
-                                >
+                            @if ($a->foto_url && $a->foto_url !== asset('images/default-avatar.png'))
+                                <img src="{{ $a->foto_url }}" alt="Foto de {{ $a->nombre_completo }}"
+                                    class="w-10 h-10 rounded-full object-cover border-2 border-gray-200">
                             @else
-                                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xs font-medium text-gray-500">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xs font-medium text-gray-500">
                                     {{ substr($a->nombres_str, 0, 1) }}{{ substr($a->apellidos_str, 0, 1) }}
                                 </div>
                             @endif
@@ -59,26 +52,21 @@
                             <x-secondary-button wire:click="edit({{ $a->id }})">Editar</x-secondary-button>
                             <x-secondary-button wire:click="showDetail({{ $a->id }})">Ver +</x-secondary-button>
 
-                            <x-danger-button 
-                                class="ml-2" 
-                                x-data
+                            <x-danger-button class="ml-2" x-data
                                 x-on:click.prevent="if(confirm('¿Eliminar alumno?')) $wire.delete({{ $a->id }})">
                                 Eliminar
                             </x-danger-button>
                         </td>
                     </tr>
 
-                    {{-- Fila de detalle (solo visible si está seleccionado) --}}
+                    {{-- Fila de detalle --}}
                     @if ($showingDetailId == $a->id)
                         <tr class="bg-gray-50 border-t">
                             <td colspan="7" class="p-6">
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="flex items-start gap-4">
-                                        <img 
-                                            src="{{ $a->foto_url }}" 
-                                            alt="Foto de {{ $a->nombre_completo }}"
-                                            class="w-20 h-20 rounded-full object-cover ring-1 ring-gray-200"
-                                        >
+                                        <img src="{{ $a->foto_url }}" alt="Foto de {{ $a->nombre_completo }}"
+                                            class="w-20 h-20 rounded-full object-cover ring-1 ring-gray-200">
                                         <div>
                                             <h4 class="font-semibold text-lg">{{ $a->nombre_completo }}</h4>
                                             <div class="text-sm text-gray-600">{{ $a->email }}</div>
@@ -89,7 +77,7 @@
                                                 <div class="text-sm">
                                                     <strong>WhatsApp:</strong>
                                                     <a href="https://wa.me/+549{{ preg_replace('/\D/', '', $a->telefono) }}"
-                                                       target="_blank" class="underline text-blue-600">
+                                                        target="_blank" class="underline text-blue-600">
                                                         {{ $a->telefono }}
                                                     </a>
                                                 </div>
@@ -115,7 +103,8 @@
                                         @if ($a->link_git)
                                             <div>
                                                 <strong>GitHub:</strong>
-                                                <a href="{{ $a->link_git }}" target="_blank" class="underline text-blue-600 hover:text-blue-800">
+                                                <a href="{{ $a->link_git }}" target="_blank"
+                                                    class="underline text-blue-600 hover:text-blue-800">
                                                     {{ $a->link_git }}
                                                 </a>
                                             </div>
@@ -123,7 +112,8 @@
                                         @if ($a->link_linkedin)
                                             <div>
                                                 <strong>LinkedIn:</strong>
-                                                <a href="{{ $a->link_linkedin }}" target="_blank" class="underline text-blue-600 hover:text-blue-800">
+                                                <a href="{{ $a->link_linkedin }}" target="_blank"
+                                                    class="underline text-blue-600 hover:text-blue-800">
                                                     {{ $a->link_linkedin }}
                                                 </a>
                                             </div>
@@ -131,7 +121,8 @@
                                         @if ($a->link_portfolio)
                                             <div>
                                                 <strong>Portfolio:</strong>
-                                                <a href="{{ $a->link_portfolio }}" target="_blank" class="underline text-blue-600 hover:text-blue-800">
+                                                <a href="{{ $a->link_portfolio }}" target="_blank"
+                                                    class="underline text-blue-600 hover:text-blue-800">
                                                     {{ $a->link_portfolio }}
                                                 </a>
                                             </div>
@@ -164,31 +155,35 @@
             </h3>
 
             <div class="grid md:grid-cols-2 gap-4">
-                <div class="md:col-span-2">
-                    <x-input-label value="Foto del alumno" />
-                    <input 
-                        type="file" 
-                        wire:model="foto"
-                        class="block w-full text-sm text-gray-500
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-indigo-50 file:text-indigo-700
-                            hover:file:bg-indigo-100"
-                        accept="image/*"
-                    >
-                    @error('foto') 
-                        <span class="text-red-500 text-xs">{{ $message }}</span> 
-                    @enderror
+                {{-- Foto + previsualización --}}
+                <div class="md:col-span-2 flex items-center gap-6">
+                    <img src="{{ $this->fotoUrl }}" alt="Foto del alumno"
+                        class="h-16 w-16 rounded-full object-cover ring-1 ring-gray-200" />
+
+                    <div class="flex-1">
+                        <x-input-label value="Foto del alumno" />
+                        <input type="file" wire:model="nuevaFoto"
+                            class="block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-indigo-50 file:text-indigo-700
+                                hover:file:bg-indigo-100"
+                            accept="image/*">
+                        <x-input-error :messages="$errors->get('nuevaFoto')" />
+                        <div wire:loading wire:target="nuevaFoto" class="text-sm text-gray-500 mt-1">Subiendo imagen...
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Formatos: JPG/PNG/WEBP. Máx 2MB.</p>
+                    </div>
                 </div>
 
                 <div>
-                    <x-input-label value="Nombres (separados por espacio)" />
+                    <x-input-label value="Nombres" />
                     <x-text-input wire:model="nombresStr" class="w-full" />
                     <x-input-error :messages="$errors->get('nombresStr')" />
                 </div>
                 <div>
-                    <x-input-label value="Apellidos (separados por espacio)" />
+                    <x-input-label value="Apellidos" />
                     <x-text-input wire:model="apellidosStr" class="w-full" />
                     <x-input-error :messages="$errors->get('apellidosStr')" />
                 </div>
@@ -233,6 +228,26 @@
                     <x-input-label value="Portfolio (URL)" />
                     <x-text-input wire:model="link_portfolio" class="w-full" />
                 </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    {{-- Nueva contraseña --}}
+                    <div>
+                        <x-input-label for="newPassword" value="Nueva Contraseña" />
+                        <x-text-input id="newPassword" type="password" class="w-full" wire:model="newPassword" />
+                        <x-input-error :messages="$errors->get('newPassword')" />
+                    </div>
+
+                    {{-- Confirmación --}}
+                    <div>
+                        <x-input-label for="newPasswordConfirmation" value="Confirmar Nueva Contraseña" />
+                        <x-text-input id="newPasswordConfirmation" type="password" class="w-full"
+                            wire:model="newPasswordConfirmation" />
+                        <x-input-error :messages="$errors->get('newPasswordConfirmation')" />
+                    </div>
+                </div>
+
+
+
             </div>
 
             <div class="mt-6 flex items-center gap-3">

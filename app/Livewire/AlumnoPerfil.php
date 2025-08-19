@@ -25,7 +25,7 @@ class AlumnoPerfil extends Component
     public ?string $link_portfolio = null;
     public string $nombresStr = '';
     public string $apellidosStr = '';
-      public ?string $fecha_nacimiento = null; // Fecha de nacimiento (opcional)
+    public ?string $fecha_nacimiento = null; // Fecha de nacimiento (opcional)
 
     // Foto actual guardada en BD (ruta relativa en disco 'public')
     public ?string $foto_perfil = null;
@@ -35,13 +35,17 @@ class AlumnoPerfil extends Component
 
     // Para controlar la visibilidad del formulario de edición
     public $editMode = false;
+    public string $currentPassword = '';
+    public string $newPassword = '';
+    public string $newPasswordConfirmation = '';
+
 
     public function mount(int $userId)
     {
         abort_unless(
-            Auth::user() && 
-            Auth::user()->id === $userId && 
-            (Auth::user()->esAlumno() || Auth::user()->esProfesor()), 
+            Auth::user() &&
+                Auth::user()->id === $userId &&
+                (Auth::user()->esAlumno() || Auth::user()->esProfesor()),
             403
         );
 
@@ -163,5 +167,25 @@ class AlumnoPerfil extends Component
             ->get();
 
         return view('livewire.alumno-perfil', compact('profesores'));
+    }
+
+    public function updatePassword()
+    {
+        $this->validate([
+            'newPassword' => ['required', 'string', 'min:8'],
+            'newPasswordConfirmation' => ['required', 'same:newPassword'],
+        ], [
+            'newPassword.required' => 'La nueva contraseña es obligatoria.',
+            'newPassword.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'newPasswordConfirmation.same' => 'Las contraseñas no coinciden.',
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            'password' => bcrypt($this->newPassword),
+        ]);
+
+        $this->reset(['newPassword', 'newPasswordConfirmation']);
+        session()->flash('message', 'Contraseña actualizada correctamente.');
     }
 }
