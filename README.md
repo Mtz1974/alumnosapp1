@@ -22,7 +22,7 @@ Nahuel Masacote
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-8892BF.svg)](https://php.net/)
 [![Laravel 12](https://img.shields.io/badge/Laravel-12-FF2D20.svg)](https://laravel.com)
 
-![Banner Principal](docs/images/welcome.png)
+![Banner Principal](images/welcome.png)
 
 Plataforma web para gestión integral de estudiantes y docentes desarrollada con Laravel 12.
 
@@ -94,19 +94,19 @@ php artisan serve --port=8080
 ## 📸 Capturas de Pantalla
 
 ### Página de Inicio
-![Página de Inicio](docs/images/welcome.png)
+![Página de Inicio](images/welcome.png)
 *Vista principal del sistema con acceso al login y registro*
 
 ### Panel del Profesor
-![Panel Profesor](docs/images/panel-profesor.png)
+![Panel Profesor](images/panel-profesor.png)
 *Dashboard docente con estadísticas y herramientas de gestión*
 
 ### Listado de Alumnos
-![Lista Alumnos](docs/images/lista-alumnos.png)
+![Lista Alumnos](images/lista-alumnos.png)
 *Interfaz de gestión con filtros y paginación dinámica*
 
 ### Perfil de Estudiante
-![Perfil Alumno](docs/images/perfil-alumno.png)
+![Perfil Alumno](images/perfil-alumno.png)
 *Detalle completo con información académica y redes sociales*
 
 
