@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
+//use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::view('/', 'welcome');
+// Ruta para exportar PDF de alumnos
+Route::get('/alumnos/pdf', [AlumnoController::class, 'exportarPDF'])->name('alumnos.pdf');
 
-// Dashboard: decide vista según rol
-use app\Livewire\AlumnosIndex;
+Route::view('/', 'welcome');
 
 // routes/web.php
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 // Perfil (opcional, si usás Breeze Jetstream)
 Route::view('profile', 'profile')
@@ -20,4 +21,4 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 // Auth routes (login, register, etc.)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

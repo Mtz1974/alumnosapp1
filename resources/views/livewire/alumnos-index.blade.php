@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <input type="text" wire:model.live="search" wire:key="edit-form-{{ $editingId }}" placeholder="Buscar por email, dni, carrera, comisión"
-            class="border rounded px-3 py-2 w-1/2" />
+        <input type="text" wire:model.live="search" wire:key="edit-form-{{ $editingId }}"
+            placeholder="Buscar por email, dni, carrera, comisión" class="border rounded px-3 py-2 w-1/2" />
         <div class="flex items-center gap-3">
             <select wire:model="perPage" class="border rounded px-2 py-1">
                 <option value="10">10</option>
@@ -11,6 +11,20 @@
             <x-primary-button wire:click="create">Nuevo alumno</x-primary-button>
         </div>
     </div>
+    {{-- ...existing code... --}}
+    <div class="flex items-center gap-3">
+        <select wire:model="perPage" class="border rounded px-2 py-1">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
+        <x-primary-button wire:click="create">Nuevo alumno</x-primary-button>
+        <a href="{{ route('alumnos.pdf') }}" target="_blank"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow ml-2">
+            Descargar PDF
+        </a>
+    </div>
+    {{-- ...existing code... --}}
 
     @if (session('message'))
         <div class="p-3 rounded bg-green-100 text-green-700">{{ session('message') }}</div>
