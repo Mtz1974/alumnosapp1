@@ -1,7 +1,7 @@
 # AlumnosApp - Gestión Académica de Alumnos
-Trabajo Academico colaborativo de grupo de alumnos en la Materia de Programcion 4 - UTN 
-Profesor a cargo de la materia: Fernando Enrique Aguirre
-Colaboradores:
+- Trabajo Academico colaborativo de grupo de alumnos en la Materia de Programcion 4 - UTN 
+- Profesor a cargo de la materia: Fernando Enrique Aguirre
+- Colaboradores:
 
 @D4vidR0j4s
 Olmedo Rojas Eric David
@@ -46,7 +46,7 @@ Plataforma web para gestión integral de estudiantes y docentes desarrollada con
 - **Interfaz Avanzada**
   - Búsqueda inteligente con Livewire
   - Paginación dinámica
-  - Exportación a CSV/Excel
+  - Exportación a CSV/Excel y PDF
 
 ## 🛠 Tecnologías
 | Componente       | Tecnologías                                                                 |
