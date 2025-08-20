@@ -6,9 +6,6 @@
 @D4vidR0j4s
 Olmedo Rojas Eric David
 
-@LeoArce98
-Leonardo Agustín Arce
-
 
 @Mtz1974
 Maria Teresa Zamboni
@@ -47,6 +44,34 @@ Plataforma web para gestión integral de estudiantes y docentes desarrollada con
   - Búsqueda inteligente con Livewire
   - Paginación dinámica
   - Exportación a CSV/Excel y PDF
+
+## 🗂️ Estructura y Flujo del Sistema
+
+El sistema AlumnosApp está diseñado para la gestión académica integral de estudiantes y docentes. Su estructura se basa en los siguientes módulos principales:
+
+1. **Autenticación y Roles**
+  - Inicio de sesión y registro para profesores y administradores.
+  - Middleware personalizado para controlar el acceso según el perfil.
+
+2. **Gestión de Estudiantes**
+  - CRUD completo de alumnos con validación en tiempo real.
+  - Edición masiva y visualización detallada de perfiles.
+
+3. **Gestión Multimedia**
+  - Subida y almacenamiento seguro de imágenes asociadas a los perfiles.
+
+4. **Interfaz Dinámica**
+  - Búsqueda inteligente, paginación y exportación de datos.
+  - Paneles diferenciados para cada tipo de usuario.
+
+**Flujo General:**
+- El usuario accede al sistema y se autentica según su rol.
+- Los administradores gestionan usuarios y configuraciones generales.
+- Los profesores acceden a herramientas de seguimiento y gestión de estudiantes.
+- Los datos se visualizan y manipulan mediante interfaces interactivas, con opciones de exportación y filtrado.
+
+Esta estructura permite una administración eficiente y segura de la información académica, facilitando el trabajo colaborativo entre docentes y la gestión de estudiantes.
+
 
 ## 🛠 Tecnologías
 | Componente       | Tecnologías                                                                 |

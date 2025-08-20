@@ -1,1 +1,1 @@
-<img src="{{ asset('/build/assets/img/utn_logo.png') }}" alt="Application Logo" {{ $attributes }}>
+<img src="{{ asset('/images/utn_logo.png') }}" alt="Application Logo" {{ $attributes }}>

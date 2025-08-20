@@ -19,7 +19,7 @@
 
         <!-- Logo UTN -->
         <div class="mb-6">
-            <img src="{{ asset('/build/assets/img/UTN-Resistencia.png') }}" alt="Logo UTN" class="w-40 mx-auto drop-shadow-lg">
+            <img src="{{ asset('/images/UTN-Resistencia.png') }}" alt="Logo UTN" class="w-40 mx-auto drop-shadow-lg">
         </div>
 
         <!-- Título -->
@@ -53,9 +53,9 @@
         <!-- Carrusel de imágenes -->
         <div class="relative w-full max-w-4xl overflow-hidden rounded-xl shadow-lg mb-8">
             <div id="carousel" class="flex transition-transform duration-700">
-                <img src="{{ asset('/build/assets/img/utn-1.jpeg') }}" class="w-full object-cover" alt="Instalaciones UTN">
-                <img src="{{ asset('/build/assets/img/utn-2.jpg') }}" class="w-full object-cover" alt="Laboratorio UTN">
-                <img src="{{ asset('/build/assets/img/utn-3.jpg') }}" class="w-full object-cover" alt="Aulas UTN">
+                <img src="{{ asset('/images/utn-1.jpeg') }}" class="w-full object-cover" alt="Instalaciones UTN">
+                <img src="{{ asset('/images/utn-2.jpg') }}" class="w-full object-cover" alt="Laboratorio UTN">
+                <img src="{{ asset('/images//utn-3.jpg') }}" class="w-full object-cover" alt="Aulas UTN">
             </div>
             <!-- Controles -->
             <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">‹</button>
