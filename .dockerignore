@@ -1,0 +1,12 @@
+.git
+.gitignore
+node_modules
+vendor
+storage/*.key
+.env
+docker-compose.yml
+.vscode
+*.log
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
